@@ -5,8 +5,7 @@ const checkout = {
 
   addItem(item) {
     if (typeof item.price !== "number" || isNaN(item.price)) {
-      console.log("Invalid price.");
-      return;
+      item.price = +item.price;
     }
 
     this.items.push(item);
