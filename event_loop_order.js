@@ -12,3 +12,5 @@ console.log("End");
 // End
 // Promise Task
 // Timeout Task
+
+// Reason being execute this code in manner because the setTimeout and Promises are asynchronous in nature that's why they will execute later on.
