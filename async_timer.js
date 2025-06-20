@@ -1,11 +1,10 @@
-const duration = 3000;
 function timer(duration, callback) {
   setTimeout(() => {
-    callback();
+    callback(duration);
   }, duration);
 }
-function onComplete() {
+function onComplete(duration) {
   console.log(`Timer of ${duration} ms finished`);
 }
 
-timer(duration, onComplete);
+timer(3000, onComplete);
