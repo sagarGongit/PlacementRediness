@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Times New Roman", Times, serif;
+}
+.portfolio {
+  padding-left: 20px;
+}
+.navbar {
+  width: 100%;
+  height: 100px;
+  background-color: midnightblue;
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+  align-content: center;
+}
+.navbar a {
+  text-decoration: none;
+  color: bisque;
+  margin-left: 10px;
+}
+.about {
+  width: 100%;
+  height: 300px;
+}
+.about p {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.about img {
+  width: 200px;
+  height: 200px;
+}
+.projects {
+  width: 100%;
+  height: 500px;
+}
+.projects div {
+  margin-top: 10px;
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+.projects ul {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+.projects a {
+  margin-top: 10px;
+}
+.projects p {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.projects img {
+  margin-top: 10px;
+}
+.contact {
+  width: 100%;
+  height: 200px;
+  margin-top: 10px;
+}
+.contact input[type="submit"] {
+  width: 70px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+.footer {
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+  text-align: center;
+  align-content: center;
+  background-color: midnightblue;
+  color: white;
+}
+.footer a {
+  text-decoration: none;
+  color: brown;
+}
