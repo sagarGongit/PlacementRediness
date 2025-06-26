@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Webpage</title>
+  </head>
+  <body>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <button onclick="handleClick()">Add Item</button>
+  </body>
+  <script>
+    let addItem = document.querySelector("ul");
+    function handleClick() {
+      let newItem = document.createElement("li");
+      newItem.textContent = "New Item";
+      newItem.style.color = "blue";
+      newItem.style.fontWeight = "bold";
+      newItem.style.fontStyle = "italic";
+      addItem.appendChild(newItem);
+    }
+  </script>
+</html>
