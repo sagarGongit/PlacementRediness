@@ -18,9 +18,15 @@
     function handleClick() {
       let newItem = document.createElement("li");
       newItem.textContent = "New Item";
-      newItem.style.color = "blue";
-      newItem.style.fontWeight = "bold";
-      newItem.style.fontStyle = "italic";
+      let value = addItem.children;
+      for (let i = 0; i < value.length; i++) {
+        if (i % 2 == 0) {
+          value[i].style.color = "blue";
+          value[i].style.fontWeight = "bold";
+        } else {
+          value[i].style.fontStyle = "italic";
+        }
+      }
       addItem.appendChild(newItem);
     }
   </script>
