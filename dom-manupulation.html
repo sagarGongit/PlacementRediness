@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manupulation</title>
+  </head>
+  <body>
+    <input type="text" placeholder="enter color name" class="color" />
+    <input type="text" placeholder="enter text content" class="content" />
+    <button onclick="handleColor()">Change Background</button>
+    <button onclick="handleText()">Update Text</button>
+    <br /><br />
+    <div
+      style="
+        width: 200px;
+        height: 200px;
+        border: 1px solid gray;
+        align-content: center;
+        text-align: center;
+      "
+    >
+      initial text content
+    </div>
+  </body>
+  <script>
+    let container = document.querySelector("div");
+    let colorName = document.querySelector(".color");
+    let content = document.querySelector(".content");
+
+    function handleColor() {
+      if (colorName.value.length > 0) {
+        container.style.backgroundColor = colorName.value;
+      } else {
+        alert("Invalid color name!");
+      }
+    }
+
+    function handleText() {
+      if (content.value.length > 0) {
+        container.innerText = content.value;
+      } else {
+        alert("Please enter some text!");
+      }
+    }
+  </script>
+</html>
