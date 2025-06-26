@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Todo</title>
+  </head>
+  <body>
+    <div class="add-task">
+      <input type="text" placeholder="enter todo..." />
+      <button onclick="handleTask()">Add Task</button>
+    </div>
+    <div>
+      <ul class="display-task"></ul>
+    </div>
+  </body>
+  <script>
+    let displayTask = document.querySelector(".display-task");
+    let newTask = document.querySelector("input");
+
+    function handleTask() {
+      let taskValue = document.createElement("li");
+      taskValue.innerHTML = `
+        <li>
+        ${newTask.value}
+        <button onclick=${handleDelete}>Delete</button>
+        <button>Complete</button>
+        </li>
+      `;
+      displayTask.append(taskValue);
+    }
+  </script>
+</html>
