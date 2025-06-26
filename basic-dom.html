@@ -20,11 +20,12 @@
     let h1Tag = document.getElementById("h1-tag");
     h1Tag.textContent = "Welcome to the DOM World!";
 
+    let pTags = document.getElementsByTagName("p");
+    for (let i = 0; i < pTags.length; i++) {
+      pTags[i].style.color = "yellow";
+    }
+
     let divTag = document.querySelector("div");
     divTag.style.color = "blue";
-    
-    let pTags = document.getElementsByTagName("p");
-    // here style not accessible so the blue color not apply to all p tags
-    pTags.style.color = "blue";
   </script>
 </html>
