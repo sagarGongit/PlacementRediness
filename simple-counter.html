@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Counter App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App() {
+      const [count, setCount] = React.useState(0);
+      function increaseCount() {
+        setCount((prev) => prev + 1);
+        if (count == 10) {
+          alert("Goal Reached!");
+          setCount(0);
+        }
+      }
+      function decreaseCount() {
+        setCount((prev) => prev - 1);
+        if (count == 0) {
+          setCount(0);
+        }
+      }
+      function resetCount() {
+        setCount(0);
+      }
+      return (
+        <>
+          <div>
+            <button onClick={increaseCount}>INC</button>
+            <h2>Count : {count}</h2>
+            <button onClick={decreaseCount}>DEC</button>
+            <button onClick={resetCount}>Reset</button>
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>
