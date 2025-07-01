@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advance Task Manager</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      background-color: aliceblue;
+    }
+    .tasks {
+      width: 100%;
+      height: auto;
+      border: 1px solid black;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 50px;
+      padding: 10px;
+    }
+    .task-card {
+      width: 65%;
+      height: 250px;
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+      margin: auto;
+    }
+    .task-card button {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .add-task {
+      text-align: center;
+    }
+    .filter {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function DisplayTask({ tasks, updateTask, deleteTask }) {
+      return (
+        <>
+          <div className="tasks">
+            {tasks.length == 0 ? (
+              <div style={{width : "96vw",textAlign : "center"}}>
+                <h1>Task List is Empty Add Some Task</h1>
+              </div>
+            ) : (
+              tasks?.map((item, idx) => (
+                <div key={idx} className="task-card">
+                  <h4>ID : {item.id}</h4>
+                  <h3>Title : {item.title}</h3>
+                  <h4
+                    style={{
+                      textDecoration: item.marked ? "line-through" : "none",
+                    }}
+                  >
+                    Marked : {item.marked ? "Complete" : "Incomplete"}
+                  </h4>
+                  <h4>Priority : {item.priority}</h4>
+                  <button
+                    style={{
+                      backgroundColor: "red",
+                      border: "none",
+                      width: "60px",
+                      height: "20px",
+                      color: "white",
+                    }}
+                    onClick={() => deleteTask(item.id)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    style={{
+                      backgroundColor: "green",
+                      border: "none",
+                      width: "60px",
+                      height: "20px",
+                      color: "white",
+                    }}
+                    onClick={() => updateTask(item.id)}
+                  >
+                    Update
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+        </>
+      );
+    }
+    function AddTask() {
+      const [task, setTask] = React.useState([]);
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        let Newtask = {
+          id: Date.now(),
+          title: e.target.title.value,
+          marked: e.target.marked.checked,
+          priority: e.target.priority.value,
+        };
+        setTask([...task, Newtask]);
+      }
+
+      function UpdateTask(id) {
+        setTask((prev) =>
+          prev?.map((val) =>
+            val.id === id ? { ...val, marked: !val.marked } : val
+          )
+        );
+      }
+
+      function DeleteTask(id) {
+        setTask((prev) => prev?.filter((val) => val.id !== id));
+      }
+
+      function handlePriority(e) {
+        setTask((prev) =>
+          prev?.filter((val) => val.priority === e.target.value)
+        );
+      }
+      function handleStatus(e) {
+        setTask((prev) =>
+          prev?.filter(
+            (val) =>
+              val.marked === (e.target.value == "complete" ? true : false)
+          )
+        );
+      }
+
+      return (
+        <>
+          <div className="add-task">
+            <h3>Add Task</h3>
+            <br />
+            <form onSubmit={handleSubmit}>
+              <label>
+                Title :{" "}
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Enter Task..."
+                  required
+                />
+              </label>
+
+              <br />
+              <br />
+              <label>
+                Marked :
+                <input type="checkbox" id="marked" />
+              </label>
+              <br />
+              <br />
+              <label>
+                Priority :
+                <select id="priority" required>
+                  <option>select priority</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </label>
+              <br />
+              <br />
+              <button type="submit" value="submit">
+                Submit
+              </button>
+            </form>
+          </div>
+          <h3 style={{ textAlign: "center" }}>Filter</h3>
+          <div className="filter">
+            <div>
+              <select onChange={(e) => handlePriority(e)}>
+                <option value="#">select-by-priority</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div>
+              <select onChange={(e) => handleStatus(e)}>
+                <option>select-by-marked</option>
+                <option value="complete">Completed</option>
+                <option value="incomplete">Incomplete</option>
+              </select>
+            </div>
+          </div>
+          <DisplayTask
+            tasks={task}
+            updateTask={UpdateTask}
+            deleteTask={DeleteTask}
+          />
+        </>
+      );
+    }
+    function App() {
+      return (
+        <>
+          <h1 style={{ textAlign: "center" }}>Task Manager</h1>
+          <AddTask />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>
