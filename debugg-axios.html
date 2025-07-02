@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debugg Axios Integration</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      background-color: aliceblue;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function TaskList() {
+      const [tasks, setTasks] = React.useState([]);
+
+      const fetchData = () => {
+        axios("https://basictodoconcept-default-rtdb.firebaseio.com/tasks.json")
+          .then((response) => setTasks(response.data)) // Error here proper destructuring required
+          .catch((error) => console.log("Error fetching tasks:", error));
+      };
+
+      React.useEffect(() => {
+        fetchData();
+      }, []);
+      return (
+        <>
+          <div>
+            <h1>Task List</h1>
+            <ul>
+              {Object.entries(tasks).map(([id, task]) => (
+                <li key={id}>{task.title}</li> // Error here instead of task.id only id required as key
+              ))}
+            </ul>
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<TaskList />);
+  </script>
+</html>
