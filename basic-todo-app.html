@@ -86,7 +86,13 @@
       );
     }
     function AddTodo() {
-      const [todo, setTodo] = React.useState([]);
+      const [todo, setTodo] = React.useState([
+        {
+          id: 1383783839,
+          title: "Buy milk",
+        },
+        { id: 1328393290, title: "Study React" },
+      ]);
 
       function handleSubmit(e) {
         e.preventDefault();
