@@ -45,6 +45,7 @@
   <script type="text/babel">
     function UserList() {
       const [users, setUsers] = React.useState([]);
+      const [flag, setFlag] = React.useState(false);
 
       const fetchUsers = () => {
         axios
@@ -77,6 +78,7 @@
           .then((res) => {
             if (res.status === 200) {
               alert("data updated successfully");
+              setFlag(!flag);
             }
           })
           .catch((error) => {
@@ -94,6 +96,7 @@
           .then((res) => {
             if (res.status === 200) {
               alert("user deleted successfully");
+              setFlag(!flag);
             }
           })
           .catch((error) => {
@@ -122,6 +125,7 @@
           .then((res) => {
             if (res.status === 200) {
               alert("user added successfully");
+              setFlag(!flag);
             }
           })
           .catch((error) => {
@@ -133,7 +137,7 @@
 
       React.useEffect(() => {
         fetchUsers();
-      }, []);
+      }, [flag]);
       return (
         <>
           <div>
