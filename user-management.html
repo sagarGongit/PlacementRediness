@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management System</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      background-color: aliceblue;
+    }
+    .users {
+      width: 100%;
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .user-card {
+      width: 80%;
+      height: 150px;
+      border: 1px solid orange;
+      padding: 5px;
+      text-align: center;
+      align-content: center;
+    }
+    .user-card button {
+      margin-left: 10px;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function UserList() {
+      const [users, setUsers] = React.useState([]);
+
+      const fetchUsers = () => {
+        axios
+          .get(
+            "https://basictodoconcept-default-rtdb.firebaseio.com/users.json"
+          )
+          .then((response) => setUsers(response.data))
+          .catch((error) => console.log("Error fetching tasks:", error));
+      };
+
+      const handleEdit = (id) => {
+        const input = prompt("enter updated field :");
+        let email;
+        let name;
+        if (input.includes("@")) {
+          email = input;
+        } else {
+          name = input;
+        }
+        let data = {
+          name: name,
+          email: email,
+        };
+
+        axios
+          .patch(
+            `https://basictodoconcept-default-rtdb.firebaseio.com/users/${id}.json`,
+            data
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              alert("data updated successfully");
+            }
+          })
+          .catch((error) => {
+            console.log(
+              "something went wrong while updating data:" + error.message
+            );
+          });
+      };
+
+      const handleDelete = (id) => {
+        axios
+          .delete(
+            `https://basictodoconcept-default-rtdb.firebaseio.com/users/${id}.json`
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              alert("user deleted successfully");
+            }
+          })
+          .catch((error) => {
+            console.log(
+              "something went wrong while deleting data:" + error.message
+            );
+          });
+      };
+
+      const AddUser = () => {
+        let email = prompt("enter email");
+        let name = prompt("enter name");
+        if (!email.includes("@")) {
+          alert("please enter valid email");
+          return;
+        }
+        let data = {
+          name: name,
+          email: email,
+        };
+        axios
+          .post(
+            `https://basictodoconcept-default-rtdb.firebaseio.com/users.json`,
+            data
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              alert("user added successfully");
+            }
+          })
+          .catch((error) => {
+            console.log(
+              "something went wrong while adding data:" + error.message
+            );
+          });
+      };
+
+      React.useEffect(() => {
+        fetchUsers();
+      }, []);
+      return (
+        <>
+          <div>
+            <h1>User List</h1>
+            <div style={{ width: "100%", height: "50px", textAlign: "right" }}>
+              <button onClick={AddUser}>Add User</button>
+            </div>
+            <div className="users">
+              {Object.entries(users).map(([id, user]) => (
+                <div className="user-card" key={id}>
+                  <h4>Name : {user.name}</h4>
+                  <h4> Email : {user.email}</h4>
+                  <button onClick={() => handleEdit(id)}>Edit</button>
+                  <button onClick={() => handleDelete(id)}>Delete</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      );
+    }
+    function App() {
+      return (
+        <>
+          <UserList />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>
