@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch With Sound</title>
+  </head>
+  <style>
+    .player {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      gap: 20px;
+      background-color: midnightblue;
+      color: white;
+    }
+    .player button {
+      width: 120px;
+      height: 40px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .player button:hover {
+      background-color: rgb(65, 39, 39);
+      color: white;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App() {
+      const [count, setCount] = React.useState(0);
+      const [isRunning, setRunning] = React.useState(false);
+      const audioRef = React.useRef();
+
+      function Start() {
+        setRunning(true);
+      }
+
+      function playAudio() {
+        if (audioRef) {
+          audioRef.current.play();
+        }
+      }
+
+      function Pause() {
+        if (audioRef) {
+          audioRef.current.pause();
+          setRunning(!isRunning);
+        }
+      }
+
+      function Reset() {
+        if (audioRef) {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          setRunning(false);
+          setCount(0);
+        }
+      }
+
+      React.useEffect(() => {
+        let interval;
+        if (isRunning) {
+          interval = setInterval(() => {
+            setCount((prev) => prev + 1);
+          }, 1000);
+        }
+        return () => clearInterval(interval);
+      }, [isRunning]);
+
+      if (count === 10) {
+        playAudio();
+      }
+
+      return (
+        <>
+          <div className="player">
+            <button onClick={Start}>Start</button>
+            <button onClick={Pause}>Pause</button>
+            <h2>Count : {count}</h2>
+            <audio ref={audioRef}>
+              <source
+                src="https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg"
+                type="audio/ogg"
+              />
+            </audio>
+            <button onClick={Reset}>Reset</button>
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>
