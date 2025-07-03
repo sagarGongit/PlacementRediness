@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display User Profiles</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      background-color: aliceblue;
+    }
+    .users {
+      width: 100%;
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .user-card {
+      width: 80%;
+      height: 180px;
+      border: 1px solid orange;
+      padding: 5px;
+      text-align: center;
+      align-content: center;
+    }
+    .user-card button {
+      margin-left: 10px;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function UserList() {
+      const [users, setUsers] = React.useState([]);
+      const [loading, setLoading] = React.useState(false);
+      const [query, setQuery] = React.useState("");
+
+      const fetchUsers = () => {
+        setLoading(true);
+        axios
+          .get(
+            query
+              ? `https://jsonplaceholder.typicode.com/users?q=${query}`
+              : `https://jsonplaceholder.typicode.com/users`
+          )
+          .then((response) => {
+            setUsers(response.data);
+            setLoading(false);
+          })
+          .catch((error) => console.log("Error fetching tasks:", error));
+      };
+
+      function handleSearch(e) {
+        e.preventDefault();
+        setQuery(e.target.name.value);
+      }
+
+      React.useEffect(() => {
+        fetchUsers();
+      }, [query]);
+
+      if (loading) {
+        return (
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <h1>...Loading</h1>
+          </div>
+        );
+      }
+
+      return (
+        <>
+          <div>
+            <h1>User List</h1>
+            <div style={{ width: "100%", height: "50px", textAlign: "center" }}>
+              <form onSubmit={handleSearch}>
+                <input type="text" placeholder="search user name.." id="name" />
+                <button>search</button>
+              </form>
+            </div>
+            <div className="users">
+              {users?.map((user, idx) => (
+                <div className="user-card" key={idx}>
+                  <h4>Name : {user.name}</h4>
+                  <h4> Email : {user.email}</h4>
+                  <h4> City : {user.address.city}</h4>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      );
+    }
+    function App() {
+      return (
+        <>
+          <UserList />
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>

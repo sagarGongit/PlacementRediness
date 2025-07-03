@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Quote Generator</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      background-color: aliceblue;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    let quote = [
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+      {
+        quote: "this is quote 1",
+        content: "this is content",
+        author: "this is author",
+      },
+    ];
+    function App() {
+      const [quotes, setQuote] = React.useState([]);
+
+      const FetchQuote = () => {
+        setQuote(quote);
+      };
+
+      React.useEffect(() => {
+        setInterval(() => {}, 30000);
+      }, []);
+
+      return (
+        <>
+          <div>
+            <h1>Daily Quote Generator</h1>
+            <div>
+              {quotes?.map((item, idx) => (
+                <div key={idx}>
+                  <h4>{item.quote}</h4>
+                  <h4>{item.content}</h4>
+                  <h4>{item.author}</h4>
+                </div>
+              ))}
+            </div>
+            <button>Get New Quote</button>
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>
