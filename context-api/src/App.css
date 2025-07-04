@@ -1,0 +1,39 @@
+.light-mode {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  color: black;
+  text-align: center;
+}
+.light-mode button {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.light-mode button:hover {
+  background-color: ghostwhite;
+}
+
+.dark-mode {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: midnightblue;
+  color: white;
+  text-align: center;
+}
+.dark-mode button {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.dark-mode button:hover {
+  background-color: ghostwhite;
+}
