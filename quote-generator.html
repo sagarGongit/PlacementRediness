@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Quote Generator</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Times New Roman", Times, serif;
+    }
+    .quote-box {
+      width: 100%;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quote-box > div {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      width: 50vw;
+      height: 50vh;
+      text-align: center;
+      align-content: center;
+      padding: 10px;
+    }
+    button {
+      width: 150px;
+      height: 40px;
+      border-radius: 10px;
+      border: none;
+      background-color: midnightblue;
+      color: white;
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const quote = [
+      {
+        quote: "The unexamined life is not worth living.",
+        content:
+          "True wisdom begins with self-reflection and questioning our existence.",
+        author: "Socrates",
+      },
+      {
+        quote: "I think, therefore I am.",
+        content: "Our ability to think is the foundation of our existence.",
+        author: "René Descartes",
+      },
+      {
+        quote:
+          "Happiness is not something ready made. It comes from your own actions.",
+        content: "Fulfillment is cultivated through intentional living.",
+        author: "Dalai Lama",
+      },
+      {
+        quote: "He who opens a school door, closes a prison.",
+        content: "Education liberates the mind and uplifts society.",
+        author: "Victor Hugo",
+      },
+      {
+        quote: "Man is condemned to be free.",
+        content: "With freedom comes the burden of responsibility and choice.",
+        author: "Jean-Paul Sartre",
+      },
+      {
+        quote:
+          "To live is the rarest thing in the world. Most people exist, that is all.",
+        content: "True living requires awareness and intention.",
+        author: "Oscar Wilde",
+      },
+      {
+        quote: "The only thing I know is that I know nothing.",
+        content: "Acknowledging ignorance is the beginning of wisdom.",
+        author: "Socrates",
+      },
+      {
+        quote: "You must be the change you wish to see in the world.",
+        content: "Transformation begins with personal action.",
+        author: "Mahatma Gandhi",
+      },
+      {
+        quote:
+          "Life must be understood backward. But it must be lived forward.",
+        content: "Reflection gives meaning, but action drives life.",
+        author: "Søren Kierkegaard",
+      },
+      {
+        quote: "No man ever steps in the same river twice.",
+        content: "Change is constant; nothing remains the same.",
+        author: "Heraclitus",
+      },
+      {
+        quote: "Liberty consists in doing what one desires.",
+        content: "Freedom is the ability to act according to one's will.",
+        author: "John Stuart Mill",
+      },
+      {
+        quote: "The mind is everything. What you think you become.",
+        content: "Our thoughts shape our reality and identity.",
+        author: "Buddha",
+      },
+      {
+        quote:
+          "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+        content: "Virtue is built through consistent practice.",
+        author: "Aristotle",
+      },
+      {
+        quote: "Hell is other people.",
+        content:
+          "Our identity is shaped and sometimes constrained by others’ perceptions.",
+        author: "Jean-Paul Sartre",
+      },
+      {
+        quote: "It is not length of life, but depth of life.",
+        content: "A meaningful life is measured by richness, not duration.",
+        author: "Ralph Waldo Emerson",
+      },
+      {
+        quote: "The greatest wealth is to live content with little.",
+        content: "Simplicity brings peace and sufficiency.",
+        author: "Plato",
+      },
+      {
+        quote: "Knowing yourself is the beginning of all wisdom.",
+        content: "Self-awareness is the root of understanding and growth.",
+        author: "Aristotle",
+      },
+      {
+        quote:
+          "Freedom is secured not by the fulfilling of men's desires, but by the removal of desire.",
+        content: "Liberation comes from detachment, not indulgence.",
+        author: "Epictetus",
+      },
+      {
+        quote:
+          "Act only according to that maxim whereby you can at the same time will that it should become a universal law.",
+        content: "Moral actions are those that could be universally applied.",
+        author: "Immanuel Kant",
+      },
+      {
+        quote: "He who has a why to live can bear almost any how.",
+        content: "Purpose gives strength to endure hardship.",
+        author: "Friedrich Nietzsche",
+      },
+    ];
+
+    function App() {
+      const [quotes, setQuote] = React.useState([]);
+      const [currentIdx, setCurrentIdx] = React.useState(0);
+
+      React.useEffect(() => {
+        setQuote(quote);
+      }, []);
+
+      React.useEffect(() => {
+        if (quotes.length === 0) {
+          return;
+        }
+        let interval = setInterval(() => {
+          setCurrentIdx((prev) => (prev + 1) % quotes.length);
+        }, 30000);
+
+        return () => clearInterval(interval);
+      }, [quotes]);
+
+      return (
+        <>
+          <div className="quote-box">
+            <div>
+              {quotes.length > 0 && (
+                <div key={currentIdx}>
+                  <p>{quotes[currentIdx].quote}</p>
+                  <p>{quotes[currentIdx].content}</p>
+                  <p>{quotes[currentIdx].author}</p>
+                </div>
+              )}
+            </div>
+          </div>
+          <div style={{ width: "100%", height: "40px", textAlign: "center" }}>
+            <button
+              onClick={() =>
+                setCurrentIdx((prev) => (prev + 1) % quotes.length)
+              }
+            >
+              Get New Quote
+            </button>
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</html>
