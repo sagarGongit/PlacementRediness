@@ -1,0 +1,110 @@
+@media only screen and (max-width: 600px) {
+  .empty-shell {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightgreen;
+  }
+  .my-books {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 20px;
+  }
+  .book-card {
+    margin: auto;
+    width: 325px;
+    height: 530px;
+    text-align: center;
+  }
+  .book-card img {
+    width: 100%;
+    height: 300px;
+  }
+  .book-card > div select {
+    width: 130px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: orange;
+    color: black;
+    padding: 5px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .empty-shell {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightgreen;
+  }
+  .my-books {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 20px;
+  }
+  .book-card {
+    margin: auto;
+    width: 320px;
+    height: 530px;
+    text-align: center;
+  }
+  .book-card img {
+    width: 100%;
+    height: 300px;
+  }
+  .book-card > div select {
+    width: 130px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: orange;
+    color: black;
+    padding: 5px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .empty-shell {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: lightgreen;
+  }
+  .my-books {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 20px;
+  }
+  .book-card {
+    margin: auto;
+    width: 350px;
+    height: 530px;
+    text-align: center;
+  }
+  .book-card img {
+    width: 100%;
+    height: 300px;
+  }
+  .book-card > div select {
+    width: 130px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: orange;
+    color: black;
+    padding: 5px;
+  }
+}

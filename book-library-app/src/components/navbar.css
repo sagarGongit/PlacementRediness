@@ -1,0 +1,160 @@
+@media only screen and (max-width: 600px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    z-index: 100;
+  }
+  .navbar > div:nth-child(1) {
+    padding: 10px;
+    font-size: 20px;
+    color: darkblue;
+  }
+  .init-nav {
+    display: none;
+    visibility: hidden;
+  }
+  .ham-menu {
+    display: block;
+    width: 35px;
+    height: 35px;
+    align-content: center;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    color: darkblue;
+  }
+  .drawer-span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 200px;
+    height: 300px;
+    background-color: white;
+    color: cornflowerblue;
+    padding: 10px;
+  }
+  .drawer-span > div {
+    border-radius: 5px;
+    align-content: center;
+    margin-bottom: 30px;
+    padding: 5px;
+    margin-left: 10px;
+  }
+  .drawer-span > div:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    cursor: pointer;
+  }
+  .drawer-span button {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    z-index: 100;
+  }
+  .navbar > div:nth-child(1) {
+    padding: 10px;
+    font-size: 20px;
+    color: darkblue;
+  }
+  .init-nav {
+    display: none;
+    visibility: hidden;
+  }
+  .ham-menu {
+    display: block;
+    width: 35px;
+    height: 35px;
+    align-content: center;
+    text-align: center;
+    font-size: 25px;
+    cursor: pointer;
+    color: darkblue;
+  }
+  .drawer-span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 200px;
+    height: 300px;
+    background-color: white;
+    color: cornflowerblue;
+    padding: 10px;
+  }
+  .drawer-span > div {
+    border-radius: 5px;
+    align-content: center;
+    margin-bottom: 30px;
+    padding: 5px;
+    margin-left: 10px;
+  }
+  .drawer-span > div:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    cursor: pointer;
+  }
+  .drawer-span button {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    z-index: 100;
+  }
+  .navbar > div:nth-child(1) {
+    padding: 10px;
+    font-size: 20px;
+    color: darkblue;
+  }
+  .navbar > div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .navbar > div:nth-child(2) a {
+    text-decoration: none;
+    color: cornflowerblue;
+  }
+  .navbar > div:nth-child(2) button {
+    width: 100px;
+  }
+  .ham-menu {
+    display: none;
+  }
+  .drawer-span {
+    display: none;
+  }
+}
