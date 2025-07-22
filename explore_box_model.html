@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exploring the CSS Box Model</title>
+  </head>
+  <style>
+    .box1 {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      padding: 5px;
+      box-sizing: content-box;
+      color: midnightblue;
+      background-color: red;
+    }
+    .box2 {
+      width: 300px;
+      height: 300px;
+      margin: 10px;
+      padding: 8px;
+      box-sizing: border-box;
+      color: green;
+      background-color: aliceblue;
+    }
+    .box3 {
+      width: 300px;
+      height: 300px;
+      margin: 10px;
+      padding: 10px;
+      color: gold;
+      background-color: gray;
+    }
+  </style>
+  <body>
+    <div class="box1">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, placeat.
+      Assumenda officia dolor itaque voluptates harum nobis quos dignissimos
+      unde, odio, maiores iusto iure? Maiores obcaecati sint suscipit quas
+      quisquam?
+    </div>
+    <div class="box2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Est temporibus ea
+      error. Quo aspernatur consequuntur ut nobis aut nisi quasi esse doloribus
+      sunt, fugiat provident similique quod. Adipisci, nam quaerat.
+    </div>
+    <div class="box3">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+      aspernatur ex, laudantium nam quidem saepe repudiandae perferendis cumque
+      aperiam ullam? Possimus, reprehenderit. Eligendi quia ratione ex, animi
+      dicta facilis ab.
+    </div>
+  </body>
+</html>
