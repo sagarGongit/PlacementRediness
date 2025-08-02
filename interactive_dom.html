@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive DOM Manipulation</title>
+  </head>
+  <style>
+    .container {
+      width: 100%;
+      height: 100vh;
+      align-content: center;
+      text-align: center;
+    }
+    .container > div {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      margin: auto;
+      align-content: center;
+      margin-top: 20px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <input
+        class="colorName"
+        type="text"
+        placeholder="enter color name..."
+      /><br /><br />
+      <input
+        class="textContent"
+        type="text"
+        placeholder="enter text content..."
+      /><br /><br />
+      <button onclick="changeBg()">Change Background</button><br /><br /><button
+        onclick="changeText()"
+      >
+        Update Text
+      </button>
+      <div class="display">
+        <h4 class="text">Initial Text</h4>
+      </div>
+    </div>
+  </body>
+  <script>
+    let text = document.querySelector(".textContent");
+    let colorN = document.querySelector(".colorName");
+    let content = document.querySelector("h4");
+    let display = document.querySelector(".display");
+
+    function changeBg() {
+      if (colorN.value.length >= 3) {
+        display.style.backgroundColor = colorN.value;
+      } else {
+        alert("Invalid color name!");
+      }
+    }
+    function changeText() {
+      if (text.value.length > 3) {
+        content.innerText = text.value;
+      } else {
+        alert("Please enter some text!");
+      }
+    }
+  </script>
+</html>
