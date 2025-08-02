@@ -14,15 +14,22 @@
     <button>Add Item</button>
   </body>
   <script>
-    const list = document.querySelectorAll("ul");
+    const list = document.querySelector("ul");
     const btn = document.querySelector("button");
 
     btn.addEventListener("click", () => {
       const addItem = document.createElement("li");
       addItem.innerText = "New Item";
-      for (let i = 0; i < list.length; i++) {
-        list[i].append(addItem);
-      }
+      list.append(addItem);
+
+      list.querySelectorAll("li").forEach((val, idx) => {
+        val.style.color = idx % 2 == 0 ? "blue" : "red";
+        val.style.fontWeight = idx % 2 == 0 ? "bold" : "normal";
+      });
+    });
+    list.querySelectorAll("li").forEach((val, idx) => {
+      val.style.color = idx % 2 == 0 ? "blue" : "red";
+      val.style.fontStyle = idx % 2 == 0 ? "italic" : "normal";
     });
   </script>
 </html>
