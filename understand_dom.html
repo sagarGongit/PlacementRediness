@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding and Navigating the DOM</title>
+  </head>
+  <body>
+    <h1 id="h1-tag">Initial Text</h1>
+    <p>This is p tag 1</p>
+    <p>This is p tag 2</p>
+    <p>This is p tag 3</p>
+    <p>This is p tag 4</p>
+    <div class="container">This is div 1</div>
+    <div>This is div 2</div>
+  </body>
+  <script>
+    let getH1 = document.getElementById("h1-tag");
+    getH1.innerText = "Welcome to the DOM World!";
+    let pTag = document.getElementsByTagName("p");
+    for (let i = 0; i < pTag.length; i++) {
+      pTag[i].style.color = "blue";
+    }
+    let getDiv = document.querySelector(".container");
+    getDiv.style.backgroundColor = "yellow";
+  </script>
+</html>
